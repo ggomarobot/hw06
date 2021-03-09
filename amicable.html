@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Amicable Numbers</title>
+
+</head>
+
+<body>
+	<script language="javascript">
+
+	function find_factors(n)
+	{
+		var factors = []
+		for(let i = 1; i < n; i++) {
+
+			if(isAFactor(n,i) == 0) {
+				factors.push(i);
+			}
+		}
+		return factors;
+	}
+
+	function isAFactor(x,y)
+	{
+		if (x % y == 0) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+	
+	function match(a, b, c, d)
+	{
+		var first_sum = 0;
+		var second_sum = 0;
+
+		for (i = 0; i < b.length; i++) {
+				first_sum += b[i];
+		}
+		
+		for (i = 0; i < d.length; i++) {
+				second_sum += d[i];
+		}
+
+		if (first_sum == c && second_sum == a) {
+			document.getElementById("result").innerHTML = 
+			"The numbers: " + a + " and " + c + " are amicable";
+		} else {
+			document.getElementById("result").innerHTML = 
+			"The numbers: " + a + " and " + c + " are not amicable";
+		}
+
+
+	}
+	
+
+	function factoring()
+	{
+		first = document.getElementById("first").value;
+		second = document.getElementById("second").value;
+	
+		
+		first_num_factors = find_factors(first);
+		second_num_factors = find_factors(second);
+		
+		alert("factors for " + first + " are " +
+		first_num_factors + "\nfactors for " +
+		second + " are " + second_num_factors);
+		
+		match(first, first_num_factors, second, second_num_factors);
+
+	}
+
+
+</script>
+
+<form>
+	first number<br />
+	<input type= 'text' id='first'><br />
+	second number <br />
+	<input type= 'text' id='second'><br />
+	
+	<input type ='button'
+	value = 'Check if they are amicable numbers!' onclick="factoring()">
+</form>
+<div id="result" style="margin:10px; font-size:25px;"></div>
+
+
+</body>
+</html>
+
+
